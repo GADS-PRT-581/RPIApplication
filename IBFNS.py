@@ -131,14 +131,14 @@ while True:
                 #Check CRC
                 if CalculateCRC(ModbusPacket)== True:
                     #Convert Data to String
-                    DeviceAddress=(ModbusPacket[2])
+                    DeviceAddress=str(ModbusPacket[2])
                     DeviceType=str(ModbusPacket[3])
                     AlarmStatus=str(ModbusPacket[4])
                     AlarmThreshold=str(ModbusPacket[5])
                     Temperature=str(ModbusPacket[6])
                     Smoke=str(ModbusPacket[7])
                     #Write CRC result and Device Address
-                    print("Device Address" + DeviceAddress + "CRC True")
+                    print("Device Address: " + DeviceAddress + "->  CRC True")
                     #Change Connection Status
                     if DatabaseDevices.Connection != "Connected":
                         db.child(UniqueID).child("Devices").child(DeviceAddress).child("Connection").set("Connected")
